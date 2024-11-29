@@ -11,7 +11,7 @@ class Property(models.Model):
         ('new',"Nuevo"),
         ('received',"Oferta recibida"),
         ('accepted',"Aceptado"),
-        ("sold","Rechazado"),
+        ("sold","Vendido como arbitro corrupto"),
         ("cancel","Cancelado")
     ],default="new",string="Estatus")
 
