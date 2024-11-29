@@ -1,0 +1,126 @@
+<odoo>
+    <data>
+
+        <record id="action_property_view_offers" model="ir.actions.act_window">
+            <field name="name">Propiedad</field>
+            <field name="res_model">estate.property.offer</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('property_id',"=",active_id)]</field>
+        </record>
+
+
+        <record id="estate_property_tree_view" model="ir.ui.view">
+            <field name="name">estate.property.tree</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="postcode"/>
+                    <field name="date_availability"/>
+                    <field name="expected_price"/>
+                    <field name="best_offer"/>
+                    <field name="selling_price"/>
+                    <field name="state" widget="badge"/>
+                </tree>
+            </field>
+            
+        </record>
+
+        <record id="estate_property_form_view" model="ir.ui.view">
+            <field name="name">estate.property.form</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_sold" type="object" string="Vendido" class="btn btn-primary"/>
+                        <button name="action_cancel" type="object" string="Rechazado" class="btn btn-danger"/>
+                        <!-- <button name="state" widget="statusbar" statusbar_visible="new,received"/> -->
+                        <!-- <button name="%{module_name.action_id}d" type="action" string="Cancel" class="btn btn-danger"/> -->
+                        <field name="state" widget="statusbar"/>
+                        
+                    </header>
+                    <sheet>
+                        <div class="oe_buttton_box" name="button_box">
+                            <!-- <button class="oe_stat_button" name="%(real_estate_ads.action_property_view_offers)d" type="action">
+                                <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
+                            </button> -->
+                            <button class="oe_stat_button" name="action_property_view_offers" type="object">
+                                <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" widget="char_emojis"/>
+                            <field name="tag_id" widget="many2many_tags"/>
+                            <group>
+                                <field name="type_id"/>
+                                <field name="state"/>
+                                <field name="postcode"/>
+                                <field name="date_availability"/>
+                            </group>
+                            <group>
+                                <field name="expected_price"/>
+                                <field name="best_offer"/>
+                                <field name="selling_price"/>
+                            </group>
+
+
+                        </group>
+                        <notebook>
+                            <page string="Descripción">
+                                <group>
+                                    <field name="description"/>
+                                    <field name="bedrooms"/>
+                                    <field name="living_area"/>
+                                    <field name="facades"/>
+                                    <field name="garage" widget="boolean_toggle"/>
+                                    <field name="garden"/>
+                                    <field name="garden_area" invisible="garden == False" readonly="garden == False"/>
+                                    <!-- <field name="garden_orientation" attrs="{'invisible':[('garden','='False)]}" widget="radio"/> -->
+                                    <!-- <field name="garden_orientation" widget="radio"/> -->
+                                    <field name="garden_orientation" invisible="garden == False" readonly="garden == False"/>
+                                    <field name="total_area"/>
+                                </group>
+                            </page>
+                            <page string="Ofertas">
+                                <field name="offer_ids" >
+                                    <tree editable="bottom">
+                                        <field name="price"/>
+                                        <field name="partner_id"/>
+                                        <field name="creation_date"/>
+                                        <field name="validity"/>
+                                        <field name="deadline" widget="remaining_days"/>
+                                        <!-- <field name="status" nolabel="1"/> -->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Otra informacion">
+                                <group>
+                                    <field name="sales_id" widget="many2one_avatar_user"/>
+                                    <field name="buyer_id"/>
+                                    <field name="phone" widget="phone"/>
+                                </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+            
+        </record>
+
+        <record id="action_property" model="ir.actions.act_window">
+            <field name="name">Propiedad</field>
+            <field name="res_model">estate.property</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="estate_property_tree_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Crea una propiedad para hacer un buen de lana!
+                </p>
+            </field>
+        </record>
+
+    </data>
+
+</odoo>
