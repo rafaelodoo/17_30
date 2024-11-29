@@ -1,12 +1,5 @@
 from odoo import fields, models, api
 
-class TransientOffer(models.TransientModel):
-    _name ="transient.model.offer"
-    _description= 'Transient model'
-
-    @api.autovacuum
-    def _transient_vacuum(self):
-        pass
 
 class Property(models.Model):
     _name = 'estate.property'
@@ -82,8 +75,7 @@ class Property(models.Model):
     def action_property_view_offers(self):
         return {
             'type':'ir.actions.act_window',
-            'name':f"{self.name} - 'Ofertas chidas'",
-            
+            'name':f"{self.name} - Ofertones",
             'domain':[('property_id','=',self.id)],
             'view_mode':'tree',
             'res_model':'estate.property.offer'

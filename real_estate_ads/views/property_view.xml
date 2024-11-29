@@ -24,7 +24,23 @@
                     <field name="state" widget="badge"/>
                 </tree>
             </field>
-            
+        </record>
+
+        
+        <record id="estate_property_search_view" model="ir.ui.view">
+            <field name="name">estate.property.search</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="type_id"/>
+                    <field name="postcode"/>
+                    <field name="date_availability"/>
+                    <field name="expected_price"/>
+                    <field name="best_offer"/>
+                    <field name="selling_price"/>
+                </search>
+            </field>
         </record>
 
         <record id="estate_property_form_view" model="ir.ui.view">
