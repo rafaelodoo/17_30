@@ -86,7 +86,7 @@ class Property(models.Model):
             
             'domain':[('property_id','=',self.id)],
             'view_mode':'tree',
-            'res_model':'state.property.offer'
+            'res_model':'estate.property.offer'
         }
 
     
