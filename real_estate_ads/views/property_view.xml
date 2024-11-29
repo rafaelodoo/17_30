@@ -34,8 +34,8 @@
                 <search>
                     <field name="name"/>
                     <field name="state"/>
+                    <field name="buyer_id"/> 
                     <field name="postcode"/> 
-                    <field name="buyer"/> 
                 </search>
             </field>
         </record>
