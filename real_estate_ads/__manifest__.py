@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Real Estate Ads Udemy 2",
+    'name': "Real Estate Ads Udemy",
     'summary': """
-        Esta aplicación esta desarrollada con fines del curso de Udemy 1""",
+        Aplicación realizada a partir de curso de Udemy Zero to Hero""",
     'description': """
-        Aplicación chida
+        Aplicación de practica
     """,
-    'author': "Rafapolis",
+    'author': "Ing. Rafael López Flores",
     'website': "http://www.yourcompany.com",
     'category': 'Rafael',
     'version': '1.0',
