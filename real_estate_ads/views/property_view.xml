@@ -33,12 +33,9 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
-                    <field name="type_id"/>
-                    <field name="postcode"/>
-                    <field name="date_availability"/>
-                    <field name="expected_price"/>
-                    <field name="best_offer"/>
-                    <field name="selling_price"/>
+                    <field name="state"/>
+                    <field name="postcode"/> 
+                    <field name="buyer"/> 
                 </search>
             </field>
         </record>
