@@ -2,6 +2,17 @@ from odoo import fields, models, api
 from datetime import timedelta
 from odoo.exceptions import ValidationError
 
+# Comentado en el video 30
+# class TransientOffer(models.TransientModel):
+#     _name ="transient.model.offer"
+#     _description= 'Transient model'
+
+#     @api.autovacuum
+#     def _transient_vacuum(self):
+#         pass
+
+
+
 class PropertyOffer(models.Model):
     _name = 'estate.property.offer'
     _description = 'Oferta inmobiliaria'
