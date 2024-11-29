@@ -1,0 +1,12 @@
+<odoo>
+    <menuitem name="Modulo Udemy" id="menu_root_property_ads" web_icon="real_estate_ads,static/description/cost.png">
+        <menuitem id="menu_property_ads" name="Anuncios">
+            <menuitem id="menu_property" name="Propiedad" action="real_estate_ads.action_property"/>
+        </menuitem>
+        <menuitem id="menu_property_ads_settings" name="Configuración">
+            <menuitem id="menu_property_type" name="Tipos de propiedad" action="real_estate_ads.action_property_type"/>
+            <menuitem id="menu_property_tag" name="Tipos de etiqueta" action="real_estate_ads.action_property_tag"/>
+            <menuitem id="menu_property_offers" name="Ofertas" action="real_estate_ads.action_property_offers"/>
+        </menuitem> 
+    </menuitem>
+</odoo>
