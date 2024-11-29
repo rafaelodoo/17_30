@@ -15,9 +15,9 @@ class Property(models.Model):
     name = fields.Char(string="Nombre", required=True)
     
     state = fields.Selection([
-        ('new',"New"),
+        ('new',"Nueva"),
         ('received',"Oferta recibida"),
-        ('accepted',"Aceptado"),
+        ('accepted',"Aceptado <i class='fa fa-cloud-upload fa-fw'></i>"),
         ("sold","Rechazado homs"),
         ("cancel","Cancelado :'(")
     ],default="new",string="Estatus")
