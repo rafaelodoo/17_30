@@ -82,7 +82,7 @@ class Property(models.Model):
     def action_property_view_offers(self):
         return {
             'type':'ir.actions.act_window',
-            'name':f"{self.name - 'Ofertas chidas'}",
+            'name':f"{self.name} - 'Ofertas chidas'",
             
             'domain':[('property_id','=',self.id)],
             'view_mode':'tree',
