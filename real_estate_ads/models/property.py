@@ -15,11 +15,11 @@ class Property(models.Model):
     name = fields.Char(string="Nombre", required=True)
     
     state = fields.Selection([
-        ('new',"Nueva"),
+        ('new',"Nuevo"),
         ('received',"Oferta recibida"),
-        ('accepted',"Aceptado <i class='fa fa-cloud-upload fa-fw'></i>"),
-        ("sold","Rechazado homs"),
-        ("cancel","Cancelado :'(")
+        ('accepted',"Aceptado"),
+        ("sold","Rechazado"),
+        ("cancel","Cancelado")
     ],default="new",string="Estatus")
 
     type_id = fields.Many2one("estate.property.type", string="Tipo de propiedad")
@@ -82,7 +82,7 @@ class Property(models.Model):
     def action_property_view_offers(self):
         return {
             'type':'ir.actions.act_window',
-            'name':f"{self.name - 'Ofertas chidoris'}",
+            'name':f"{self.name - 'Ofertas chidas'}",
             
             'domain':[('property_id','=',self.id)],
             'view_mode':'tree',

@@ -46,7 +46,8 @@
                                 <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
                             </button> -->
                             <button class="oe_stat_button" name="action_property_view_offers" type="object">
-                                <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
+                                <span class="fa fa-gift"/> <!-- Agrega tu icono aquí -->
+                                <field name="offer_count" string="Ofertones" widget="statinfo"/>
                             </button>
                         </div>
                         <group>
