@@ -44,6 +44,10 @@
                     <group expand="0" string="Group By">
                         <filter string="Status" name="group_by_state" context="{'group_by':'state'}"/>
                     </group>
+                    <searchpanel>
+                        <field name="Estatus" icon="fa-filter" groupby="group_by_state" limit="0"/>
+                        <field name="Tipo" icon="fa-filter" groupby="group_by_type_id" limit="0"/>
+                    </searchpanel>
                 </search>
             </field>
         </record>
