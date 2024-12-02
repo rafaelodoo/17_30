@@ -57,7 +57,7 @@
             <field name="name">estate.property.kanban</field>
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
-                <kanban>
+                <kanban default_group_by="state" on_create="quick_create" quick_create_view="real_estate_ads.quick_create_estate_property_form_view">
                     <field name="name"/>
                     <field name="state"/>
                     <field name="postcode"/>
@@ -65,8 +65,18 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_details">
-                                <field name="name"/>
-                                <field name="state"/>
+                                <strong>
+                                    <field name="name"/>
+                                </strong>
+                                <div class="o_kanban_tags_section">
+                                    <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
+                                </div>
+                                <div class="o_kanban_record_button">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field name="offer_count"/>
+                                    </div>
+                                </div>
+
                             </div>
                         </t>
                     </templates>
