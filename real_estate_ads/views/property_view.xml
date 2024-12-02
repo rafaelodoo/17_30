@@ -53,7 +53,7 @@
             </field>
         </record>
 
-        <record id="estate_property_search_view" model="ir.ui.view">
+        <record id="estate_property_kanban_view" model="ir.ui.view">
             <field name="name">estate.property.kanban</field>
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
