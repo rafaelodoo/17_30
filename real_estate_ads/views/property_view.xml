@@ -45,10 +45,10 @@
                         <filter string="Estatus" name="group_by_state" context="{'group_by':'state'}"/>
                         <filter string="Tipo" name="group_by_type_id" context="{'group_by':'type_id'}"/>
                     </group>
-                    <searchpanel>
+                    <!-- <searchpanel>
                         <field name="state" icon="fa-filter" groupby="group_by_state" limit="0"/>
                         <field name="type_id" icon="fa-filter" groupby="group_by_type_id" limit="0"/>
-                    </searchpanel>
+                    </searchpanel> -->
                 </search>
             </field>
         </record>
