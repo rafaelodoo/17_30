@@ -39,7 +39,7 @@
                     <field name="facades" type="measure"/>
                     <field name="bedrooms" type="measure"/>
                     <field name="state" type="col"/>
-                    <field name="creation_date" type="col"/>
+                    <field name="price" type="col"/>
                 </pivot>
             </field>
         </record>
