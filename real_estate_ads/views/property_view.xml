@@ -70,6 +70,8 @@
                         </t>
                     </templates>
                 </kanban>
+            </field>
+        </record>
 
 
         <record id="estate_property_form_view" model="ir.ui.view">
