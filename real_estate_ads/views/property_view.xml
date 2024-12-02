@@ -71,7 +71,7 @@
                                         <field name="name"/>
                                     </strong>
                                     <div class="o_kanban_tags_section">
-                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
+                                        <field name="tag_id" widget="many2many_tags" options="{'color_field':'color'}"/>
                                     </div>
                                     <div class="o_kanban_record_button">
                                         <div class="oe_kanban_bottom_left">

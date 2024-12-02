@@ -3,7 +3,7 @@ from odoo import fields, models, api
 
 class Property(models.Model):
     _name = 'estate.property'
-    _description = 'Estate properties'
+    _description = 'Propiedades inmobiliarias'
 
     name = fields.Char(string="Nombre", required=True)
     
