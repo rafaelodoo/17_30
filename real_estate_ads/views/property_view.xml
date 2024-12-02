@@ -40,6 +40,10 @@
                     <filter string="Vendido" name="sold_state" domain="[('state','=','sold')]"/>
                     <filter string="Oferta recibida" name="received_state" domain="[('state','=','received')]"/>
                     <filter string="Oferta aceptada" name="accepted_state" domain="[('state','=','accepted')]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="group_by_state" context="{'group_by':'state'}"/>
+                    </group>
                 </search>
             </field>
         </record>
