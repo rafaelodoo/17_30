@@ -189,6 +189,21 @@
 
 
 
+        <record id="quick_create_estate_property_form_view" model="ir.ui.view">
+            <field name="name">estate.property.form</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+
+
 
         <record id="action_property" model="ir.actions.act_window">
             <field name="name">Propiedad</field>
