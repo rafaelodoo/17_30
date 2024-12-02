@@ -135,6 +135,25 @@
             
         </record>
 
+
+        <record id="estate_property_pivot_view" model="ir.ui.view">
+            <field name="name">estate.property.pivot</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="row"/>
+                    <field name="postcode" type="row"/>
+                    <field name="selling_price" type="measure"/>
+                    <field name="expected_price" type="measure"/>
+                    <field name="facades" type="measure"/>
+                    <field name="bedrooms" type="measure"/>
+                    <field name="state" type="col"/>
+                    <field name="garage" type="col"/>
+                </pivot>
+            </field>
+        </record>
+
+
         <record id="action_property" model="ir.actions.act_window">
             <field name="name">Propiedad</field>
             <field name="res_model">estate.property</field>
@@ -142,7 +161,7 @@
             <field name="view_id" ref="estate_property_tree_view"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Crea una propiedad para hacer un buen de lana!
+                    Crea una propiedad para hacer negocios!
                 </p>
             </field>
         </record>
