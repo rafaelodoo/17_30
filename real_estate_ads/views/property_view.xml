@@ -34,8 +34,12 @@
                 <search>
                     <field name="name"/>
                     <field name="state"/>
-                    <field name="buyer_id"/> 
-                    <field name="postcode"/> 
+                    <field name="postcode"/>
+                    <field name="buyer_id"/>
+                    <filter string="Nuevo" name="new_state" domain="[('state','=','new')]">
+                    <filter string="Vendido" name="sold_state" domain="[('state','=','sold')]">
+                    <filter string="Oferta recibida" name="received_state" domain="[('state','=','received')]">
+                    <filter string="Oferta aceptada" name="accepted_state" domain="[('state','=','accepted')]">
                 </search>
             </field>
         </record>
