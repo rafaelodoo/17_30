@@ -42,11 +42,12 @@
                     <filter string="Oferta aceptada" name="accepted_state" domain="[('state','=','accepted')]"/>
                     <separator/>
                     <group expand="0" string="Group By">
-                        <filter string="Status" name="group_by_state" context="{'group_by':'state'}"/>
+                        <filter string="Estatus" name="group_by_state" context="{'group_by':'state'}"/>
+                        <filter string="Tipo" name="group_by_type_id" context="{'group_by':'type_id'}"/>
                     </group>
                     <searchpanel>
-                        <field name="Estatus" icon="fa-filter" groupby="group_by_state" limit="0"/>
-                        <field name="Tipo" icon="fa-filter" groupby="group_by_name" limit="0"/>
+                        <field name="Estatuss" icon="fa-filter" groupby="group_by_state" limit="0"/>
+                        <field name="Tipo" icon="fa-filter" groupby="group_by_type_id" limit="0"/>
                     </searchpanel>
                 </search>
             </field>
