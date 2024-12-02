@@ -66,6 +66,7 @@
                         <t t-name="kanban-box">
                             <div class="oe_kanban_details">
                                 <field name="name"/>
+                                <field name="state"/>
                             </div>
                         </t>
                     </templates>
