@@ -53,6 +53,25 @@
             </field>
         </record>
 
+        <record id="estate_property_search_view" model="ir.ui.view">
+            <field name="name">estate.property.search</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="postcode"/>
+                    <field name="buyer_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_details">
+                                <field name="name"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+
+
         <record id="estate_property_form_view" model="ir.ui.view">
             <field name="name">estate.property.form</field>
             <field name="model">estate.property</field>
@@ -138,7 +157,7 @@
         <record id="action_property" model="ir.actions.act_window">
             <field name="name">Propiedad</field>
             <field name="res_model">estate.property</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,kanban,form</field>
             <field name="view_id" ref="estate_property_tree_view"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
