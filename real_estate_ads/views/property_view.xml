@@ -76,12 +76,12 @@
         <record id="quick_create_estate_property_form_view" model="ir.ui.view">
             <field name="name">estate.property.form</field>
             <field name="model">estate.property</field>
-            <field name="arch" type="xml"> 
+            <field name="arch" type="xml">
                 <form>
                     <group>
                         <field name="name"/>
                     </group>
-                </form> 
+                </form>
             </field>
         </record>
 
