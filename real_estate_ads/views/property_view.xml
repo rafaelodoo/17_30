@@ -76,7 +76,7 @@
                         </div>
                         <group>
                             <field name="name" widget="char_emojis"/>
-                            <field name="tag_id" widget="many2many_tags"/>
+                            <field name="tag_id" widget="many2many_tags" options="{'color_field':'color'}"/>
                             <group>
                                 <field name="type_id"/>
                                 <field name="state"/>
