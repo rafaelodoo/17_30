@@ -43,7 +43,7 @@ class PropertyOffer(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Cliente")
     property_id = fields.Many2one('estate.property', string="Propiedad")
-    validity = fields.Integer(string="Validez")
+    validity = fields.Integer(string="Validez", default="")
     # deadline = fields.Integer(string="Deadline",compute="_compute_total_area",inverse="_inverse_deadline")
     deadline = fields.Integer(string="Deadline",compute="_compute_total_area")
 
@@ -95,10 +95,10 @@ class PropertyOffer(models.Model):
     def action_accept_offer(self):
         self.status = 'accepted'
 
-    def action_declined_offer(self):
+    def action_decline_offer(self):
         self.status = 'declined'
 
-    
+
     # @api.constrains('validity')
     # def _check_validity(self):
     #     for rec in self:
