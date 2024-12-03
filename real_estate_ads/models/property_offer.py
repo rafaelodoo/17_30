@@ -54,7 +54,7 @@ class PropertyOffer(models.Model):
     
     @api.model
     def _set_create_date(self):
-        return datetime.today()
+        return datetime.now().strftime('%Y-%m-01')
     
     creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
     # creation_date = fields.Date(string="Fecha de creación")
