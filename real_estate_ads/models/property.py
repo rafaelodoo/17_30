@@ -61,13 +61,6 @@ class Property(models.Model):
 
     def action_sold(self):
         self.state = 'sold'
-
-    def action_accept_offer(self):
-        self.state = 'accepted'
-    
-
-    def action_decline_offer(self):
-        self.state = 'decline'
     
     def action_cancel(self):
         self.state = 'cancel'
