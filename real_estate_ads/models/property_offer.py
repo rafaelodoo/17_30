@@ -16,6 +16,13 @@ from odoo.exceptions import ValidationError
 class PropertyOffer(models.Model):
     _name = 'estate.property.offer'
     _description = 'Oferta inmobiliaria'
+
+    
+    
+    def action_accept_offer(self):
+        self.state = 'accepted'
+
+
  
     @api.depends('property_id','partner_id')
     def _compute_name(self):
