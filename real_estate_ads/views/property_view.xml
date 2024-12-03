@@ -222,6 +222,21 @@
 
 
 
+        <record id="estate_property_calendar_view" model="ir.ui.view">
+            <field name="name">estate.property.calendar</field>
+            <field name="model">estate.property</field>
+            <field name="arch" type="xml">
+                <calendar date_start>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </calendar>
+            </field>
+        </record>
+
+
+
+
 
         <record id="action_property" model="ir.actions.act_window">
             <field name="name">Propiedad</field>
