@@ -18,9 +18,6 @@ class PropertyOffer(models.Model):
     _description = 'Oferta inmobiliaria'
 
     
-    
-    def action_accept_offer(self):
-        self.state = 'accepted'
 
 
  
@@ -54,13 +51,13 @@ class PropertyOffer(models.Model):
     #     ('check_validity','check(validity > 0)','Deadline cannot be before creation date')
     # ]
     
-    # @api.model
-    # def _set_create_date(self):
-    #     return fields.Date.today
+    @api.model
+    def _set_create_date(self):
+        return fields.Date.today
     
+    creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
+    # creation_date = fields.Date(string="Fecha de creación")
 
-    # creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
-    creation_date = fields.Date(string="Fecha de creación")
 
     # @api.depends_context('uid')
     @api.depends('validity','creation_date')
@@ -93,6 +90,14 @@ class PropertyOffer(models.Model):
                 rec['creation_date'] = fields.Date.today()
         
         return super(PropertyOffer, self).create(vals)
+    
+    
+    def action_accept_offer(self):
+        self.status = 'accepted'
+
+    def action_declined_offer(self):
+        self.status = 'declined'
+
 
     # @api.constrains('validity')
     # def _check_validity(self):
