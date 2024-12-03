@@ -58,8 +58,8 @@ class PropertyOffer(models.Model):
     def _set_create_date(self):
         return fields.Date.to_string(date.today())
     
-    creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
-    # creation_date = fields.Date(string="Fecha de creación")
+    # creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
+    creation_date = fields.Date(string="Fecha de creación")
 
 
     # @api.depends_context('uid')
