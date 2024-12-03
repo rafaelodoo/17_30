@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from datetime import timedelta
+from datetime import datetime
 from odoo.exceptions import ValidationError
 
 # Comentado en el video 30
@@ -53,7 +54,7 @@ class PropertyOffer(models.Model):
     
     @api.model
     def _set_create_date(self):
-        return fields.Date.today()
+        return datetime.today()
     
     creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
     # creation_date = fields.Date(string="Fecha de creación")
