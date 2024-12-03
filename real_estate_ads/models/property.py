@@ -64,6 +64,7 @@ class Property(models.Model):
 
     def action_accept_offer(self):
         self.state = 'accepted'
+        return True
     
 
     def action_decline_offer(self):
