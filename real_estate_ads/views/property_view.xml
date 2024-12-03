@@ -116,7 +116,7 @@
                                         <field name="deadline" widget="remaining_days"/>
                                         <field name="status" nolabel="1"/>
                                         <!-- <field name="status" nolabel="1"/> -->
-                                        <button class="btn btn-primary" name="action_accept_offer" type="object" icon="fa-check"/>
+                                        <button class="btn btn-primary" name="action_accept_offer" type="object" string="Aceptar"/>
                                         <!-- <button class="btn btn-primary" name="action_accept_offer" type="object" string="Accept"/> -->
                                         <!-- <button class="oe_stat_button" name="action_decline_offer" type="object" icon="fa-solid fa-poo"></button> -->
                                         <!-- <button class="oe_stat_button" name="action_accept_offer" type="object" icon="fa-solid fa-poo"></button> -->
