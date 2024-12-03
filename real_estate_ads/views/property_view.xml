@@ -227,7 +227,8 @@
             <field name="model">estate.property</field>
             <field name="arch" type="xml">
             <!-- In Odoo v17.0 quick_add is not used again -->
-                <calendar date_start="date_availability" string="Properties" mode="month" event_open_popup="true" quick_add="false">
+                <!-- <calendar date_start="date_availability" string="Properties" mode="month" event_open_popup="true" quick_add="false"> -->
+                <calendar date_start="date_availability" string="Properties" mode="month">
                     <field name="name"/>
                     <field name="date_availability"/>
                     <field name="postcode"/>
