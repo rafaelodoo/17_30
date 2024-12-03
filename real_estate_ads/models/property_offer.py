@@ -83,13 +83,13 @@ class PropertyOffer(models.Model):
     #     self.search(['estatus','=','refused']).unlink()
 
 
-    @api.model_create_multi
-    def create(self,vals):
-        for rec in vals:
-            if not rec.get('creation_date'):
-                rec['creation_date'] = fields.Date.today()
-        
-        return super(PropertyOffer, self).create(vals)
+    # @api.model_create_multi
+    # def create(self,vals):
+    #     for rec in vals:
+    #         if not rec.get('creation_date'):
+    #             rec['creation_date'] = fields.Date.today()
+    #
+    #     return super(PropertyOffer, self).create(vals)
     
     
     def action_accept_offer(self):
@@ -98,7 +98,7 @@ class PropertyOffer(models.Model):
     def action_declined_offer(self):
         self.status = 'declined'
 
-
+    
     # @api.constrains('validity')
     # def _check_validity(self):
     #     for rec in self:

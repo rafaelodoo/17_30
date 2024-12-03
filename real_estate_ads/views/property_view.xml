@@ -70,7 +70,7 @@
                             <!-- <button class="oe_stat_button" name="%(real_estate_ads.action_property_view_offers)d" type="action">
                                 <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
                             </button> -->
-                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-solid fa-poo">
+                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-poo">
                                 <field name="offer_count" string="Ofertones" widget="statinfo"/>
                             </button>
                         </div>
@@ -108,7 +108,7 @@
                             </page>
                             <page string="Ofertas">
                                 <field name="offer_ids" >
-                                    <tree editable="bottom">
+                                    <tree editable="bottom" decoration-success="status == 'accepted'" decoration-danger="status == 'refused'">
                                         <field name="price"/>
                                         <field name="partner_id"/>
                                         <field name="creation_date"/>
@@ -117,7 +117,7 @@
                                         <field name="status" nolabel="1"/>
                                         <!-- <field name="status" nolabel="1"/> -->
                                         <button class="btn btn-primary" name="action_accept_offer" type="object" string="Aceptar" icon="fa-check"/>
-                                        <button class="btn btn-primary" name="action_decline_offer" type="object" string="Aceptar" icon="fa-times"/>
+                                        <button class="btn btn-primary" name="action_decline_offer" type="object" string="Declinar" icon="fa-times"/>
                                         <!-- <button class="btn btn-primary" name="action_accept_offer" type="object" string="Accept"/> -->
                                         <!-- <button class="oe_stat_button" name="action_decline_offer" type="object" icon="fa-solid fa-poo"></button> -->
                                         <!-- <button class="oe_stat_button" name="action_accept_offer" type="object" icon="fa-solid fa-poo"></button> -->

@@ -22,7 +22,7 @@ class Property(models.Model):
     postcode = fields.Char(string="Codigo postal")
     date_availability = fields.Date(string="Fecha disponible")
     expected_price = fields.Float(string="Precio esperado")
-    best_offer = fields.Float(string="Mejor oferta")
+    best_offer = fields.Float(string="Mejor oferta",compute="_compute_best_price")
     selling_price = fields.Float(string="Precio de venta")
     bedrooms = fields.Integer(string="Camas")
     living_area = fields.Integer(string="Salas de estar")
@@ -64,7 +64,6 @@ class Property(models.Model):
 
     def action_accept_offer(self):
         self.state = 'accepted'
-        return True
     
 
     def action_decline_offer(self):
@@ -90,6 +89,13 @@ class Property(models.Model):
             'res_model':'estate.property.offer'
         }
 
+    @api.depends('offer_ids')
+    def _compute_best_price(self):
+        for rec in self:
+            if rec.offer_ids:
+                rec.best_offer = max(rec.offer_ids.mapped('price'))
+            else:
+                rec.best_offer = 0
     
     #id, create_date, create_uid, write_date, write_uid
 
