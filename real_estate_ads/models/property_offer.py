@@ -96,10 +96,27 @@ class PropertyOffer(models.Model):
     
     
     def action_accept_offer(self):
+        if self.property_id:
+            self._validate_accepted_offer()
+            self.property_id.write({
+                'selling_price':self.price
+            })
+            self.property_id.selling_price = self.price
+
         self.status = 'accepted'
 
+    def _validate_accepted_offer(self):
+        offer_ids = self.env['state.property.offer'].search([
+            ('property_id','=',self.property_id.id),
+            ('status','=','accepted'),
+        ])
+
+        if offer_ids:
+            raise ValidationError("Tienes que aceptar previamente")
+
+
     def action_decline_offer(self):
-        self.status = 'declined'
+        self.status = 'refused'
 
 
     # @api.constrains('validity')
