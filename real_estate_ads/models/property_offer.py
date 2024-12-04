@@ -106,7 +106,7 @@ class PropertyOffer(models.Model):
         self.status = 'accepted'
 
     def _validate_accepted_offer(self):
-        offer_ids = self.env['state.property.offer'].search([
+        offer_ids = self.env['estate.property.offer'].search([
             ('property_id','=',self.property_id.id),
             ('status','=','accepted'),
         ])
