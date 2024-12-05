@@ -110,6 +110,16 @@ class Property(models.Model):
     
     #id, create_date, create_uid, write_date, write_uid
 
+
+    def action_url_action(self):
+        return {
+            'type':'ir.actions.act_window',
+            'url':"https://odoo.com",
+            'target':'self',
+        }
+
+
+
 #Aqui estamos creando un nuevo modelo.
 class PropertyType(models.Model):
     _name = 'estate.property.type'
