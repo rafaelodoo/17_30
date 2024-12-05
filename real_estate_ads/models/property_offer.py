@@ -119,6 +119,7 @@ class PropertyOffer(models.Model):
                 'state':'cancel'
             })
             
+            
 
 
 
