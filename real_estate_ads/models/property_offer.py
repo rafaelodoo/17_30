@@ -116,10 +116,9 @@ class PropertyOffer(models.Model):
         if all(self.property_id.offer_ids.mapped('status')):
             self.property_id.write({
                 'selling_price':0,
-                'state':'received'
+                'state':'refused'
             })
             
-            self.status = 'refused'
 
 
 
