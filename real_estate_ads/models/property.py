@@ -113,7 +113,7 @@ class Property(models.Model):
 
     def action_url_action(self):
         return {
-            'type':'ir.actions.act_window',
+            'type':'ir.actions.act_url',
             'url':"https://odoo.com",
             'target':'new',
         }
