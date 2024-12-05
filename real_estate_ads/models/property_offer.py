@@ -121,7 +121,7 @@ class PropertyOffer(models.Model):
             
     
     def extend_offer_deadline(self):
-        pass
+        activ_ids = self._context.get('active_ids',[])
 
 
 
