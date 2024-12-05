@@ -70,11 +70,11 @@
                             <!-- <button class="oe_stat_button" name="%(real_estate_ads.action_property_view_offers)d" type="action">
                                 <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
                             </button> -->
-                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-poo">
+                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-handshake-o">
                                 <field name="offer_count" string="Ofertones" widget="statinfo"/>
                             </button>
                             <button class="oe_stat_button" name="action_client_action" type="object" icon="fa-handshake-o">
-                                <field name="offer_count" string="Ofertones" widget="statinfo"/>
+                                <field name="offer_count" string="Testing client" widget="statinfo"/>
                             </button>
                         </div>
                         <group>
@@ -260,6 +260,14 @@
                 </p>
             </field>
         </record>
+
+
+
+        <record id="action_custom_client_action" model="ir.actions.client">
+            <field name="name">Custom Client Action</field>
+            <field name="tag">custom_client_action</field>
+        </record>
+
 
     </data>
 
