@@ -12,7 +12,10 @@
     'version': '1.0',
     'depends': ['base'],
     'data': [
+        # groups
         'security/ir.model.access.csv',
+        'security/res_groups.csv',
+
         'views/property_view.xml',
         'views/property_type_view.xml',
         'views/property_type_tag.xml',
