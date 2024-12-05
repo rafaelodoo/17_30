@@ -286,7 +286,7 @@
             <field name="model_id" ref="real_estate_ads.model_estate_property_offer"/>
             <field name="state">code</field>
             <field name="binding_model_id" ref="real_estate_ads.model_estate_property_offer"/>
-            <field name="binding_view_types"/>list,form</field>
+            <field name="binding_view_types">list,form</field>
             <field name="code">
                 action = model.extended_offer_deadline()
             </field>
