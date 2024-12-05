@@ -128,6 +128,11 @@ class PropertyOffer(models.Model):
                 offer.validity = 10
 
 
+    def extend_offer_deadline(self):
+        offer_ids = self.env['estate.property.offer'].search([])
+        for offer in offer_ids:
+                offer.validity = offer.validity +1
+    
 
     # @api.constrains('validity')
     # def _check_validity(self):
