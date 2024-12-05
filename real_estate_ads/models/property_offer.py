@@ -119,6 +119,8 @@ class PropertyOffer(models.Model):
                 'state':'received'
             })
             
+            self.status = 'refused'
+
 
 
     # @api.constrains('validity')
