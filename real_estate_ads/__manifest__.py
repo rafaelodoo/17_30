@@ -16,6 +16,7 @@
         'security/ir.model.access.csv',
         'security/res_groups.xml',
         'security/model_access.xml',
+        'security/ir_rule.xml',
 
         'views/property_view.xml',
         'views/property_type_view.xml',
