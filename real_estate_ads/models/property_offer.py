@@ -119,7 +119,9 @@ class PropertyOffer(models.Model):
                 'state':'cancel'
             })
             
-            
+    
+    def extend_offer_deadline(self):
+        pass
 
 
 
