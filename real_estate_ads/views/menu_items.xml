@@ -7,6 +7,7 @@
             <menuitem id="menu_property_type" name="Tipos de propiedad" action="real_estate_ads.action_property_type"/>
             <menuitem id="menu_property_tag" name="Tipos de etiqueta" action="real_estate_ads.action_property_tag" groups="real_estate_ads.group_property_manager"/>
             <menuitem id="menu_property_offers" name="Ofertas" action="real_estate_ads.action_property_offers"/>
+            <menuitem id="menu_test_client_action" name="Test Client Action" action="real_estate_ads.action_property_offers"/>
         </menuitem> 
     </menuitem>
 </odoo>
