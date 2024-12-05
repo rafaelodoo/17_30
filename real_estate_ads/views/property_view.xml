@@ -298,10 +298,11 @@
             <field name="model_id" ref="real_estate_ads.model_estate_property_offer"/>
             <field name="state">code</field>
             <field name="code">model._extended_offer_deadline()</field>
-            <field name="interval_numbre">1</field>
+            <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
-            <field name="active" eval="False"/>
+            <!-- <field name="active" eval="False"/> -->
+            <!-- <field name="doall" eval=""/> -->
         </record>
 
 
