@@ -115,7 +115,7 @@ class Property(models.Model):
         return {
             'type':'ir.actions.act_window',
             'url':"https://odoo.com",
-            'target':'self',
+            'target':'new',
         }
 
 
