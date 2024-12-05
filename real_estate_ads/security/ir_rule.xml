@@ -4,7 +4,7 @@
             <field name="name">Property Rule for users</field>
             <field name="model_id" ref="real_estate_ads.model_estate_property"/>
             <field name="domain_force">[('sales_id','=',user.id)]</field>
-            <field name="groups" eval="[(4, ref('real_estate_ads.group_property_users'))]"/>
+            <field name="groups" eval="[(4, ref('real_estate_ads.group_property_user'))]"/>
             <field name="perm_unlink" eval="True"/>
             <field name="perm_write" eval="True"/>
             <field name="perm_read" eval="True"/>
