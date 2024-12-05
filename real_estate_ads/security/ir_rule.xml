@@ -10,7 +10,7 @@
             <field name="perm_read" eval="True"/>
             <field name="perm_create" eval="False"/>
         </record>
-
+        
         <record id="property_rule_for_manager" model="ir.rule">
             <field name="name">Property Rule for manager</field>
             <field name="model_id" ref="real_estate_ads.model_estate_property"/>
@@ -21,7 +21,6 @@
             <field name="perm_read" eval="True"/>
             <field name="perm_create" eval="False"/>
         </record>
-
-
+        
     </data>
 </odoo>

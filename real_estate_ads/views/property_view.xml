@@ -73,6 +73,9 @@
                             <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-poo">
                                 <field name="offer_count" string="Ofertones" widget="statinfo"/>
                             </button>
+                            <button class="oe_stat_button" name="action_client_action" type="object" icon="fa-handshake-o">
+                                <field name="offer_count" string="Ofertones" widget="statinfo"/>
+                            </button>
                         </div>
                         <group>
                             <field name="name" widget="char_emojis"/>
