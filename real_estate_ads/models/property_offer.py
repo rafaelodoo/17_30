@@ -15,15 +15,11 @@ from odoo.exceptions import ValidationError
 #         pass
 
 
-
 class PropertyOffer(models.Model):
     _name = 'estate.property.offer'
     _description = 'Oferta inmobiliaria'
 
     
-
-
- 
     @api.depends('property_id','partner_id')
     def _compute_name(self):
         for rec in self:
@@ -108,7 +104,7 @@ class PropertyOffer(models.Model):
     def _validate_accepted_offer(self):
         offer_ids = self.env['estate.property.offer'].search([
             ('property_id','=',self.property_id.id),
-            ('status','=','accepted'),
+            ('status','=','accepted')
         ])
 
         if offer_ids:
