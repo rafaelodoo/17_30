@@ -20,7 +20,7 @@
                         <field name="character_image" readonly="1"/>
                     </group>
                     <group>
-                        <img t-if="character_image" t-att-src="character_image" alt="Character Image" width="200"/>
+                        <img t-att-src="character_image" alt="Character Image" width="200"/>
                     </group>
                 </sheet>
             </form>
