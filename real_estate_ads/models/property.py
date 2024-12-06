@@ -79,6 +79,7 @@ class Property(models.Model):
 
     # total_area = fields.Integer(string="Area total" compute="_compute_total_area")
     total_area = fields.Integer(string="Area total")
+    api_url = fields.Char(string="API URL") # Nuevo campo para la URL de la API
 
     def action_sold(self):
         self.state = 'sold'
@@ -162,8 +163,12 @@ class Property(models.Model):
                     raise UserError(_("Max retries exceeded. Operation failed."))
 
 
+
     def call_api(self):
-        response = requests.get("https://rickandmortyapi.com/api/character/564")
+        url = self.api_url  # Usar la URL ingresada por el usuario
+        if not url:
+            raise UserError(_("Please provide a valid API URL."))
+        response = requests.get(url)
         if response.status_code == 200:
             data = response.json()
             image_data = base64.b64encode(requests.get(data['image']).content)
@@ -193,6 +198,40 @@ class Property(models.Model):
                     'sticky': False,
                 }
             }
+
+
+
+    # def call_api(self):
+    #     response = requests.get("https://rickandmortyapi.com/api/character/564")
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         image_data = base64.b64encode(requests.get(data['image']).content)
+    #         wizard = self.env['character.wizard'].create({
+    #             'character_name': data['name'],
+    #             'character_status': data['status'],
+    #             'character_species': data['species'],
+    #             'character_gender': data['gender'],
+    #             'character_image': image_data,
+    #         })
+    #         return {
+    #             'type': 'ir.actions.act_window',
+    #             'name': 'Character Data',
+    #             'res_model': 'character.wizard',
+    #             'view_mode': 'form',
+    #             'target': 'new',
+    #             'res_id': wizard.id,
+    #         }
+    #     else:
+    #         return {
+    #             'type': 'ir.actions.client',
+    #             'tag': 'display_notification',
+    #             'params': {
+    #                 'title': 'API Call Failed',
+    #                 'message': f"Failed to connect to API: {response.status_code}",
+    #                 'type': 'danger',
+    #                 'sticky': False,
+    #             }
+    #         }
 
     # def call_api(self):
     #     # response = requests.get("https://rickandmortyapi.com/api/character/564")
