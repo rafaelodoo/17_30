@@ -154,7 +154,8 @@ class Property(models.Model):
                     raise UserError(_("Max retries exceeded. Operation failed."))
 
     def call_api(self):
-        response = requests.get("https://rickandmortyapi.com/api/character/564")
+        # response = requests.get("https://rickandmortyapi.com/api/character/564")
+        response = requests.get("https://rickandmortyapi.com/api/character/72")
         if response.status_code == 200:
             data = response.json()
             wizard = self.env['character.wizard'].create({
