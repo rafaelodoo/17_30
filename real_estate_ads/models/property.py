@@ -130,20 +130,20 @@ class Property(models.Model):
         response = requests.get("https://rickandmortyapi.com/api/character/564")
         if response.status_code == 200:
             data = response.json()
-            self.character_name = data['name']
-            self.character_status = data['status']
-            self.character_species = data['species']
-            self.character_gender = data['gender']
-            self.character_image = data['image']
+            wizard = self.env['character.wizard'].create({
+                'character_name': data['name'],
+                'character_status': data['status'],
+                'character_species': data['species'],
+                'character_gender': data['gender'],
+                'character_image': data['image'],
+            })
             return {
-                'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {
-                    'title': 'API Call Successful',
-                    'message': f"Character {data['name']} data retrieved successfully.",
-                    'type': 'success',
-                    'sticky': False,
-                }
+                'type': 'ir.actions.act_window',
+                'name': 'Character Data',
+                'res_model': 'character.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'res_id': wizard.id,
             }
         else:
             return {
@@ -156,7 +156,6 @@ class Property(models.Model):
                     'sticky': False,
                 }
             }
-
 
 
 #Aqui estamos creando un nuevo modelo.
