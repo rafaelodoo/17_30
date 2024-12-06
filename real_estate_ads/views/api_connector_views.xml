@@ -27,12 +27,12 @@
         </field>
     </record>
 
-    <menuitem id="menu_api_connector" name="API Connector" parent="base.menu_custom" sequence="10"/>
-    <menuitem id="submenu_api_connector" name="API Connectors" parent="menu_api_connector" action="action_api_connector"/>
-
     <record id="action_api_connector" model="ir.actions.act_window">
         <field name="name">API Connectors</field>
         <field name="res_model">api.connector</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <menuitem id="menu_api_connector" name="API Connector" parent="base.menu_custom" sequence="10"/>
+    <menuitem id="submenu_api_connector" name="API Connectors" parent="menu_api_connector" action="action_api_connector"/>
 </odoo>
