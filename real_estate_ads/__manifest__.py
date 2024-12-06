@@ -27,6 +27,7 @@
         'data/estate.property.type.csv',
         # Nuevo archivo para el conector de API
         'views/api_connector_views.xml',
+        'views/character_wizard_views.xml',
     ],
     'demo': [
         'demo/property_tag.xml'

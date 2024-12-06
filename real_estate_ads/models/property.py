@@ -1,5 +1,17 @@
 from odoo import fields, models, api, _
 import requests # Importar requests
+from odoo.exceptions import UserError
+
+
+class CharacterWizard(models.TransientModel):
+    _name = 'character.wizard'
+    _description = 'Character Wizard'
+
+    character_name = fields.Char(string="Character Name", readonly=True)
+    character_status = fields.Char(string="Status", readonly=True)
+    character_species = fields.Char(string="Species", readonly=True)
+    character_gender = fields.Char(string="Gender", readonly=True)
+    character_image = fields.Char(string="Image URL", readonly=True)
 
 
 class Property(models.Model):
@@ -126,6 +138,21 @@ class Property(models.Model):
     character_gender = fields.Char(string="Gender", readonly=True)
     character_image = fields.Char(string="Image URL", readonly=True)
 
+
+
+    @api.model
+    @api.returns('self', lambda value: value.id)
+    def _retry_operation(self, operation, *args, **kwargs):
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                return operation(*args, **kwargs)
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    continue
+                else:
+                    raise UserError(_("Max retries exceeded. Operation failed."))
+
     def call_api(self):
         response = requests.get("https://rickandmortyapi.com/api/character/564")
         if response.status_code == 200:
@@ -137,14 +164,13 @@ class Property(models.Model):
                 'character_gender': data['gender'],
                 'character_image': data['image'],
             })
-            return {
-                'type': 'ir.actions.act_window',
+            return self._retry_operation(self.env['ir.actions.act_window']._for_xml_id, 'your_action_xml_id', {
                 'name': 'Character Data',
                 'res_model': 'character.wizard',
                 'view_mode': 'form',
                 'target': 'new',
                 'res_id': wizard.id,
-            }
+            })
         else:
             return {
                 'type': 'ir.actions.client',
@@ -156,7 +182,6 @@ class Property(models.Model):
                     'sticky': False,
                 }
             }
-
 
 #Aqui estamos creando un nuevo modelo.
 class PropertyType(models.Model):

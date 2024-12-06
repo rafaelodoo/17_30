@@ -1,0 +1,22 @@
+<odoo>
+    <record id="view_character_wizard_form" model="ir.ui.view">
+        <field name="name">character.wizard.form</field>
+        <field name="model">character.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Character Data">
+                <sheet>
+                    <group>
+                        <field name="character_name" readonly="1"/>
+                        <field name="character_status" readonly="1"/>
+                        <field name="character_species" readonly="1"/>
+                        <field name="character_gender" readonly="1"/>
+                        <field name="character_image" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="character_image" widget="image" class="oe_avatar" options="{'preview_image':'character_image'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
