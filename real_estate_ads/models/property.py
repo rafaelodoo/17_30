@@ -1,4 +1,5 @@
 from odoo import fields, models, api, _
+import requests # Importar requests
 
 
 class Property(models.Model):
