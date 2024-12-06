@@ -13,7 +13,7 @@
                         <field name="character_image" readonly="1"/>
                     </group>
                     <group>
-                        <img t-att-src="/web/image?model=character.wizard&amp;field=character_image&amp;id=uid" alt="Character Image" width="200"/>
+                        <img src="[[ character_image ]]" alt="Character Image" width="200"/>
                     </group>
                 </sheet>
             </form>
