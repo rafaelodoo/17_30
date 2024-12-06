@@ -20,7 +20,7 @@
                         <field name="character_image" readonly="1"/>
                     </group>
                     <group>
-                        <img t-att-src="character_image" alt="Character Image" width="200"/>
+                        <field name="character_image" widget="image" class="oe_avatar" options="{'preview_image':'character_image'}"/>
                     </group>
                 </sheet>
             </form>
