@@ -87,11 +87,10 @@
                             <field name="tag_id" widget="many2many_tags" options="{'color_field':'color'}"/>
                             <group>
                                 <field name="type_id"/>
+                                <field name="api_url"/>
                                 <field name="state"/>
                                 <field name="postcode"/>
                                 <field name="date_availability"/>
-                                <!-- Campo para ingresar la URL de la API --> 
-                                <field name="api_url"/>
                             </group>
                             <group>
                                 <field name="expected_price" groups="real_estate_ads.group_property_manager"/>
