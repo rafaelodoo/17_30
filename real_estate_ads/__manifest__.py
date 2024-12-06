@@ -24,12 +24,14 @@
         'views/property_offer_view.xml',
         'views/menu_items.xml',
         'data/property_type.xml',
-        'data/estate.property.type.csv'
+        'data/estate.property.type.csv',
+        # Nuevo archivo para el conector de API
+        'views/api_connector_views.xml',
     ],
     'demo': [
         'demo/property_tag.xml'
     ],
-    'assets':{
+    'assets': {
         'web.assets_backend': [
             'real_estate_ads/static/src/js/my_custom_tag.js',
             'real_estate_ads/static/src/xml/my_custom_tag.xml',

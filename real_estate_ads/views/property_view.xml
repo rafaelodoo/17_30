@@ -74,11 +74,13 @@
                                 <field name="offer_count" string="Lista de ofertas" widget="statinfo"/>
                             </button>
                             <button class="oe_stat_button" name="action_url_action" type="object" icon="fa-handshake-o">
-                                <field name="offer_count" string="Ofertones" widget="statinfo"/>
+                                <field name="offer_count" string="Link a Odoo" widget="statinfo"/>
                             </button>
                             <button class="oe_stat_button" name="action_client_action" type="object" icon="fa-handshake-o">
-                                <field name="offer_count" string="cuado de dialogo" widget="statinfo"/>
+                                <field name="offer_count" string="Cuadro de dialogo" widget="statinfo"/>
                             </button>
+                            <!-- Nuevo botón para llamar a la API --> 
+                            <button name="call_api" type="object" string="Call API" class="btn btn-primary" icon="fa-download"/>
                         </div>
                         <group>
                             <field name="name" widget="char_emojis"/>

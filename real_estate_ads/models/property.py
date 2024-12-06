@@ -133,3 +133,39 @@ class PropertyTag(models.Model):
 
     name = fields.Char(string="Nombre", required=True)
     color = fields.Char(string="Color")
+
+
+
+
+class APIConnector(models.Model):
+    _name = 'api.connector'
+    _description = 'API Connector'
+
+    name = fields.Char(string="Name")
+    api_url = fields.Char(string="API URL", required=True)
+
+    def call_api(self):
+        for record in self:
+            response = requests.get(record.api_url)
+            if response.status_code == 200:
+                data = response.json()
+                self.env['api.connector.character'].create({
+                    'name': data['name'],
+                    'status': data['status'],
+                    'species': data['species'],
+                    'gender': data['gender'],
+                    'image': data['image']
+                })
+            else:
+                raise Exception(f"Failed to connect to API: {response.status_code}")
+
+class Character(models.Model):
+    _name = 'api.connector.character'
+    _description = 'Rick and Morty Character'
+
+    name = fields.Char(string="Name")
+    status = fields.Char(string="Status")
+    species = fields.Char(string="Species")
+    gender = fields.Char(string="Gender")
+    image = fields.Binary(string="Image")
+
