@@ -1,7 +1,7 @@
 from odoo import fields, models, api, _
 import requests # Importar requests
 from odoo.exceptions import UserError
-
+import base64
 
 class CharacterWizard(models.TransientModel):
     _name = 'character.wizard'
@@ -11,7 +11,15 @@ class CharacterWizard(models.TransientModel):
     character_status = fields.Char(string="Status", readonly=True)
     character_species = fields.Char(string="Species", readonly=True)
     character_gender = fields.Char(string="Gender", readonly=True)
-    character_image = fields.Char(string="Image URL", readonly=True)
+    # character_image = fields.Char(string="Image URL", readonly=True)
+    character_image = fields.Binary(string="Character Image", readonly=True)
+
+    def fetch_image(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            return base64.b64encode(response.content)
+        return False
+
 
 
 class Property(models.Model):
@@ -153,17 +161,18 @@ class Property(models.Model):
                 else:
                     raise UserError(_("Max retries exceeded. Operation failed."))
 
+
     def call_api(self):
-        # response = requests.get("https://rickandmortyapi.com/api/character/564")
-        response = requests.get("https://rickandmortyapi.com/api/character/72")
+        response = requests.get("https://rickandmortyapi.com/api/character/564")
         if response.status_code == 200:
             data = response.json()
+            image_data = base64.b64encode(requests.get(data['image']).content)
             wizard = self.env['character.wizard'].create({
                 'character_name': data['name'],
                 'character_status': data['status'],
                 'character_species': data['species'],
                 'character_gender': data['gender'],
-                'character_image': data['image'],
+                'character_image': image_data,
             })
             return {
                 'type': 'ir.actions.act_window',
@@ -184,6 +193,38 @@ class Property(models.Model):
                     'sticky': False,
                 }
             }
+
+    # def call_api(self):
+    #     # response = requests.get("https://rickandmortyapi.com/api/character/564")
+    #     response = requests.get("https://rickandmortyapi.com/api/character/72")
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         wizard = self.env['character.wizard'].create({
+    #             'character_name': data['name'],
+    #             'character_status': data['status'],
+    #             'character_species': data['species'],
+    #             'character_gender': data['gender'],
+    #             'character_image': data['image'],
+    #         })
+    #         return {
+    #             'type': 'ir.actions.act_window',
+    #             'name': 'Character Data',
+    #             'res_model': 'character.wizard',
+    #             'view_mode': 'form',
+    #             'target': 'new',
+    #             'res_id': wizard.id,
+    #         }
+    #     else:
+    #         return {
+    #             'type': 'ir.actions.client',
+    #             'tag': 'display_notification',
+    #             'params': {
+    #                 'title': 'API Call Failed',
+    #                 'message': f"Failed to connect to API: {response.status_code}",
+    #                 'type': 'danger',
+    #                 'sticky': False,
+    #             }
+    #         }
 
 
 #Aqui estamos creando un nuevo modelo.
