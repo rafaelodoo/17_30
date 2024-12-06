@@ -147,7 +147,7 @@ class Property(models.Model):
 
     # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
     character_name = fields.Char(string="Nombre del personje", readonly=True)
-    character_status = fields.Char(string="Estatus", readonly=True)
+    character_status = fields.Char(string="Estado", readonly=True)
     character_species = fields.Char(string="Especie", readonly=True)
     character_gender = fields.Char(string="Genero", readonly=True)
     character_image = fields.Char(string="URL de la imagen", readonly=True)
