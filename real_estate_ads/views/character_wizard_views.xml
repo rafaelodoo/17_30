@@ -3,7 +3,7 @@
         <field name="name">character.wizard.form</field>
         <field name="model">character.wizard</field>
         <field name="arch" type="xml">
-            <form string="Character Data">
+            <form string="Información del personaje">
                 <sheet>
                     <group>
                         <field name="character_name" readonly="1"/>

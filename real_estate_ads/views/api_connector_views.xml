@@ -10,7 +10,7 @@
                         <field name="api_url"/>
                     </group>
                     <footer>
-                        <button name="call_api" string="Call API" type="object" class="btn-primary"/>
+                        <button name="call_api" string="API RM" type="object" class="btn-primary"/>
                     </footer>
                     <group>
                         <field name="character_name" readonly="1"/>

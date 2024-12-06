@@ -139,13 +139,18 @@ class Property(models.Model):
             'url':"https://odoo.com",
             'target':'new',
         }
+    
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Estate Property - %s' % self.name
+
 
     # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
-    character_name = fields.Char(string="Character Name", readonly=True)
-    character_status = fields.Char(string="Status", readonly=True)
-    character_species = fields.Char(string="Species", readonly=True)
-    character_gender = fields.Char(string="Gender", readonly=True)
-    character_image = fields.Char(string="Image URL", readonly=True)
+    character_name = fields.Char(string="Nombre del personje", readonly=True)
+    character_status = fields.Char(string="Estatus", readonly=True)
+    character_species = fields.Char(string="Especie", readonly=True)
+    character_gender = fields.Char(string="Genero", readonly=True)
+    character_image = fields.Char(string="URL de la imagen", readonly=True)
 
 
 
