@@ -135,8 +135,27 @@ class Property(models.Model):
             self.character_species = data['species']
             self.character_gender = data['gender']
             self.character_image = data['image']
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'API Call Successful',
+                    'message': f"Character {data['name']} data retrieved successfully.",
+                    'type': 'success',
+                    'sticky': False,
+                }
+            }
         else:
-            raise Exception(f"Failed to connect to API: {response.status_code}")
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'API Call Failed',
+                    'message': f"Failed to connect to API: {response.status_code}",
+                    'type': 'danger',
+                    'sticky': False,
+                }
+            }
 
 
 
