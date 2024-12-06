@@ -164,13 +164,14 @@ class Property(models.Model):
                 'character_gender': data['gender'],
                 'character_image': data['image'],
             })
-            return self._retry_operation(self.env['ir.actions.act_window']._for_xml_id, 'your_action_xml_id', {
+            return {
+                'type': 'ir.actions.act_window',
                 'name': 'Character Data',
                 'res_model': 'character.wizard',
                 'view_mode': 'form',
                 'target': 'new',
                 'res_id': wizard.id,
-            })
+            }
         else:
             return {
                 'type': 'ir.actions.client',
@@ -182,6 +183,7 @@ class Property(models.Model):
                     'sticky': False,
                 }
             }
+
 
 #Aqui estamos creando un nuevo modelo.
 class PropertyType(models.Model):
