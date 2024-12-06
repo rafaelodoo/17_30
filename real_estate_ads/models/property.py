@@ -118,6 +118,25 @@ class Property(models.Model):
             'target':'new',
         }
 
+    # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
+    character_name = fields.Char(string="Character Name", readonly=True)
+    character_status = fields.Char(string="Status", readonly=True)
+    character_species = fields.Char(string="Species", readonly=True)
+    character_gender = fields.Char(string="Gender", readonly=True)
+    character_image = fields.Char(string="Image URL", readonly=True)
+
+    def call_api(self):
+        response = requests.get("https://rickandmortyapi.com/api/character/564")
+        if response.status_code == 200:
+            data = response.json()
+            self.character_name = data['name']
+            self.character_status = data['status']
+            self.character_species = data['species']
+            self.character_gender = data['gender']
+            self.character_image = data['image']
+        else:
+            raise Exception(f"Failed to connect to API: {response.status_code}")
+
 
 
 #Aqui estamos creando un nuevo modelo.
@@ -137,35 +156,32 @@ class PropertyTag(models.Model):
 
 
 
+
+
+
 class APIConnector(models.Model):
     _name = 'api.connector'
     _description = 'API Connector'
 
     name = fields.Char(string="Name")
     api_url = fields.Char(string="API URL", required=True)
+    character_name = fields.Char(string="Character Name", readonly=True)
+    character_status = fields.Char(string="Status", readonly=True)
+    character_species = fields.Char(string="Species", readonly=True)
+    character_gender = fields.Char(string="Gender", readonly=True)
+    character_image = fields.Char(string="Image URL", readonly=True)
 
     def call_api(self):
         for record in self:
             response = requests.get(record.api_url)
             if response.status_code == 200:
                 data = response.json()
-                self.env['api.connector.character'].create({
-                    'name': data['name'],
-                    'status': data['status'],
-                    'species': data['species'],
-                    'gender': data['gender'],
-                    'image': data['image']
-                })
+                record.character_name = data['name']
+                record.character_status = data['status']
+                record.character_species = data['species']
+                record.character_gender = data['gender']
+                record.character_image = data['image']
             else:
                 raise Exception(f"Failed to connect to API: {response.status_code}")
 
-class Character(models.Model):
-    _name = 'api.connector.character'
-    _description = 'Rick and Morty Character'
-
-    name = fields.Char(string="Name")
-    status = fields.Char(string="Status")
-    species = fields.Char(string="Species")
-    gender = fields.Char(string="Gender")
-    image = fields.Binary(string="Image")
 
