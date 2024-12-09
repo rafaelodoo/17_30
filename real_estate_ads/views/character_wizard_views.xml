@@ -6,11 +6,11 @@
             <form string="Información del personaje">
                 <sheet>
                     <group>
+                        <field name="character_image" readonly="1" widget="image"/>
                         <field name="character_name" readonly="1"/>
                         <field name="character_status" readonly="1"/>
                         <field name="character_species" readonly="1"/>
                         <field name="character_gender" readonly="1"/>
-                        <field name="character_image" readonly="1" widget="image"/>
                     </group>
                 </sheet>
             </form>
