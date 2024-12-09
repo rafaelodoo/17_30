@@ -6,6 +6,34 @@
                 <div class="mt-5">
                     <div class="page">
                         <h2>Reporte - Propiedades</h2>
+
+
+                        <div id="informations" class="row mt-4 mb-4">
+                            <div class="col-auto col-3">
+                                <strong>Tipo de propiedad:</strong>
+                                <p class="m-0" t-field="o.type_id"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                    <strong>Codigo postal:</strong>
+                                <p class="m-0" t-field="o.postcode"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                <strong>Disponible desde:</strong>
+                                <p class="m-0" t-field="o.date_availability"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                <strong>Precio esperado:</strong>
+                                <p class="m-0" t-field="o.expected_price"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                <strong>Mejor oferta:</strong>
+                                <p class="m-0" t-field="o.best_offer"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                <strong>Precio esperado:</strong>
+                                <p class="m-0" t-field="o.expected_price"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </t>
