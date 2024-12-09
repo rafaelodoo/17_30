@@ -5,7 +5,10 @@
             <t t-call="web.external_layout">
                 <div class="mt-5">
                     <div class="page">
-                        <h2>Reporte - Propiedades</h2>
+
+                        <h2>
+                            <span>Reporte - Propiedades</span>
+                        </h2>
 
 
                         <div id="price_informations" class="row mt-4 mb-4">
@@ -17,27 +20,61 @@
                                     <strong>Código postal:</strong>
                                 <p class="m-0" t-field="o.postcode"/>
                             </div>
+                            <div class="col-auto col-3">
+                                <strong>Disponible desde:</strong>
+                                <p class="m-0" t-field="o.date_availability"/>
+                            </div>
                         </div>
 
                         <div id="price_informations" class="row mt-4 mb-4">
                             <div class="col-auto col-3">
-                                    <strong>Disponible desde:</strong>
-                                    <p class="m-0" t-field="o.date_availability"/>
-                                </div>
-                                <div class="col-auto col-3">
-                                    <strong>Precio esperado:</strong>
-                                    <p class="m-0" t-field="o.expected_price"/>
-                                </div>
-                                <div class="col-auto col-3">
-                                    <strong>Mejor oferta:</strong>
-                                    <p class="m-0" t-field="o.best_offer"/>
-                                </div>
-                                <div class="col-auto col-3">
-                                    <strong>Precio esperado:</strong>
-                                    <p class="m-0" t-field="o.expected_price"/>
-                                </div>
+                                <strong>Precio esperado:</strong>
+                                <p class="m-0" t-field="o.expected_price"/>
                             </div>
+                            <div class="col-auto col-3">
+                                <strong>Mejor oferta:</strong>
+                                <p class="m-0" t-field="o.best_offer"/>
+                            </div>
+                            <div class="col-auto col-3">
+                                <strong>Precio esperado:</strong>
+                                <p class="m-0" t-field="o.expected_price"/>
+                            </div>
+                        </div>
                     </div>
+
+                    <table class="table table-sm table-borderless">
+                        <thead>
+                            <tr>
+                                <th class="text-start">Cliente</th>
+                                <th class="text-start">Precio</th>
+                                <th class="text-start">Validez</th>
+                                <th class="text-start">Deadline</th>
+                                <th class="text-end">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start">
+                                    <span t-field="offer.partner_id"/>
+                                </td>
+                                <td class="text-start">
+                                    <span t-field="offer.price"/>
+                                </td>
+                                <td class="text-start">
+                                    <span t-field="offer.validity"/>
+                                </td>
+                                <td class="text-start">
+                                    <span t-field="offer.deadline"/>
+                                </td>
+                                <td class="text-end">
+                                    <span t-field="offer.status"/>
+                                </td>
+                            </tr>
+                        </tbody>
+
+
+                    </table>
+
                 </div>
             </t>
         </template>
