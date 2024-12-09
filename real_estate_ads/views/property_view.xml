@@ -80,7 +80,7 @@
                                 <field name="offer_count" string="Cuadro de dialogo" widget="statinfo"/>
                             </button>
                             <!-- Nuevo botón para llamar a la API --> 
-                            <button name="call_api" type="object" string="Call API" class="btn btn-primary" icon="fa-download"/>
+                            <button name="call_api" type="object" string="API Rick" class="btn btn-primary" icon="fa-download"/>
                         </div>
                         <group>
                             <field name="name" widget="char_emojis"/>
