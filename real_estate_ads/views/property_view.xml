@@ -70,13 +70,13 @@
                             <!-- <button class="oe_stat_button" name="%(real_estate_ads.action_property_view_offers)d" type="action">
                                 <field name="offer_count" string="Ofertas chidas" widget="statinfo"/>
                             </button> -->
-                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-handshake-o">
+                            <button class="oe_stat_button" name="action_property_view_offers" type="object" icon="fa-list-ol">
                                 <field name="offer_count" string="Lista de ofertas" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" name="action_url_action" type="object" icon="fa-handshake-o">
+                            <button class="oe_stat_button" name="action_url_action" type="object" icon="fa-link">
                                 <field name="offer_count" string="Link a Odoo" widget="statinfo"/>
                             </button>
-                            <button class="oe_stat_button" name="action_client_action" type="object" icon="fa-handshake-o">
+                            <button class="oe_stat_button" name="action_client_action" type="object" icon="fa-wand-magic-sparkles">
                                 <field name="offer_count" string="Cuadro de dialogo" widget="statinfo"/>
                             </button>
                             <!-- Nuevo botón para llamar a la API --> 
