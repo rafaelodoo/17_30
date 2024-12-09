@@ -21,7 +21,6 @@ class CharacterWizard(models.TransientModel):
         return False
 
 
-
 class Property(models.Model):
     _name = 'estate.property'
     _description = 'Propiedades inmobiliarias'
@@ -34,6 +33,7 @@ class Property(models.Model):
         ('received',"Oferta recibida"),
         ('accepted',"Aceptado"),
         ("sold","Vendido"),
+
         ("cancel","Cancelado")
     ],default="new",string="Estatus")
 
@@ -45,6 +45,7 @@ class Property(models.Model):
     expected_price = fields.Float(string="Precio esperado")
     best_offer = fields.Float(string="Mejor oferta",compute="_compute_best_price")
     selling_price = fields.Float(string="Precio de venta",readonly=True)
+
     bedrooms = fields.Integer(string="Camas")
     living_area = fields.Integer(string="Salas de estar")
     facades = fields.Integer(string="Fachadas")
@@ -90,6 +91,7 @@ class Property(models.Model):
 
     def action_decline_offer(self):
         self.state = 'decline'
+
     
     def action_cancel(self):
         self.state = 'cancel'
@@ -110,6 +112,7 @@ class Property(models.Model):
             'view_mode':'tree',
             'res_model':'estate.property.offer'
         }
+
 
     @api.depends('offer_ids')
     def _compute_best_price(self):
@@ -269,6 +272,7 @@ class Property(models.Model):
     #                 'sticky': False,
     #             }
     #         }
+
 
 
 #Aqui estamos creando un nuevo modelo.
