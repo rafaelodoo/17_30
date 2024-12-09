@@ -43,6 +43,7 @@ class PropertyOffer(models.Model):
     )
 
     partner_id = fields.Many2one('res.partner', string="Cliente")
+    partner_email = fields.Char(string="Correo electrónico del cliente",related="partner_id.email")
     property_id = fields.Many2one('estate.property', string="Propiedad")
 
     validity = fields.Integer(string="Validez", default="")

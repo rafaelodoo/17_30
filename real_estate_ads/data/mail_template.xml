@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="offer_mail_template" model="mail.template">
+            <field name="name">Información de propiedad</field>
+            <field name="email_from">testqa.team</field>
+            <field name="email_to">{{object.offer_ids.}}</field>
+            <field name="model_id" ref="real_estate_ads.model_estate_property"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="name">Nueva información en {{object.name}}</field>
+            <field name="body_html" type="html">
+                <p>
+                    Estimado postor,
+                    <br/>
+                    Esta propiedad ya esta vendida :'(
+                    <br/>
+                    <br/>
+                    Saludirijillos,
+                    <br/>
+                    Propiedades de Rafinor's Enterprises S.A. de C.V.
+                </p>
+            </field>
+
+        </record>
+    </data>
+</odoo>

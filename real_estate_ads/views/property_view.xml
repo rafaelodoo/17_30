@@ -60,6 +60,7 @@
                     <header>
                         <button name="action_sold" type="object" string="Vendido" class="btn btn-primary"/>
                         <button name="action_cancel" type="object" string="Rechazado" class="btn btn-danger"/>
+                        <button name="action_send_email" type="object" string="Enviar correo electrónico" class="btn btn-primary"/>
                         <!-- <button name="state" widget="statusbar" statusbar_visible="new,received"/> -->
                         <!-- <button name="%{module_name.action_id}d" type="action" string="Cancel" class="btn btn-danger"/> -->
                         <field name="state" widget="statusbar"/>

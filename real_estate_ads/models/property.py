@@ -152,6 +152,14 @@ class Property(models.Model):
     #     for rec in self:
     #         rec.website_url="/properties/%s" % rec.id
 
+    def action_send_email(self):
+        mail_template = self.env.ref('ref_estate_ads.offer_mail_template')
+        mail_template.send_mail(self.id,force_send=True)
+
+    
+    def _get_emails(self):
+        return ''.join(self.offer_ids.mapped('partner_id'))
+
 
     # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
     character_status = fields.Char(string="Estado", readonly=True)

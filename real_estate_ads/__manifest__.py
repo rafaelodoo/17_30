@@ -28,6 +28,7 @@
         # 'views/api_connector_views.xml',
         # 'views/character_wizard_views.xml',
         'data/estate.property.type.csv',
+        'data/mail_template.xml',
         'report/report_template.xml',
         'report/property_report.xml',
     ],
