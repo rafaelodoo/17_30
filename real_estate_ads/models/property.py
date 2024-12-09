@@ -7,12 +7,12 @@ class CharacterWizard(models.TransientModel):
     _name = 'character.wizard'
     _description = 'Character Wizard'
 
-    character_name = fields.Char(string="Character Name", readonly=True)
-    character_status = fields.Char(string="Status", readonly=True)
-    character_species = fields.Char(string="Species", readonly=True)
-    character_gender = fields.Char(string="Gender", readonly=True)
+    character_name = fields.Char(string="Nombre", readonly=True)
+    character_status = fields.Char(string="Estado", readonly=True)
+    character_species = fields.Char(string="Especie(s)", readonly=True)
+    character_gender = fields.Char(string="Género", readonly=True)
     # character_image = fields.Char(string="Image URL", readonly=True)
-    character_image = fields.Binary(string="Character Image", readonly=True)
+    character_image = fields.Binary(string="Imagen", readonly=True)
 
     def fetch_image(self, url):
         response = requests.get(url)
