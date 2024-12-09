@@ -10,7 +10,7 @@
             <field name="attachment">((object.name)+.'pdf')</field>
             <field name="binding_model_id" ref="real_estate_ads.model_estate_property"/>
             <field name="binding_type">report</field>
-            <field name="group_id" eval="[(4, ref('real_estate_ads.group_property_manager'))]"/>
+            <!-- <field name="group_id" eval="[(4, ref('real_estate_ads.group_property_manager'))]"/> -->
         </record>
     </data>
 </odoo>
