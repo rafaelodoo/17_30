@@ -17,7 +17,7 @@
         'security/res_groups.xml',
         'security/model_access.xml',
         'security/ir_rule.xml',
-
+        'security/ir.model.access.csv',
         'views/property_view.xml',
         'views/property_type_view.xml',
         'views/property_type_tag.xml',
@@ -26,9 +26,10 @@
         'data/property_type.xml',
         'data/estate.property.type.csv',
         # Nuevo archivo para el conector de API
-        #'views/api_connector_views.xml',
         'views/character_wizard_views.xml',
-        'views/estate.property.type.csv',
+        # 'views/api_connector_views.xml',
+        # 'views/character_wizard_views.xml',
+        'data/estate.property.type.csv'
     ],
     'demo': [
         'demo/property_tag.xml'
