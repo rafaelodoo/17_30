@@ -13,21 +13,7 @@
     'depends': ['base'],
     'data': [
         # groups
-        'security/ir.model.access.csv',
-        'security/res_groups.xml',
-        'security/model_access.xml',
-        'security/ir_rule.xml',
 
-        'views/property_view.xml',
-        'views/property_type_view.xml',
-        'views/property_type_tag.xml',
-        'views/property_offer_view.xml',
-        'views/menu_items.xml',
-        'data/property_type.xml',
-        'data/estate.property.type.csv',
-        # Nuevo archivo para el conector de API
-        'views/api_connector_views.xml',
-        # 'views/character_wizard_views.xml',
     ],
     'demo': [
         'demo/property_tag.xml'
