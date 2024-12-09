@@ -1,5 +1,9 @@
 from odoo import fields, models, api
 from datetime import timedelta
+
+from datetime import datetime
+from datetime import date
+
 from odoo.exceptions import ValidationError
 
 # Comentado en el video 30
@@ -12,11 +16,12 @@ from odoo.exceptions import ValidationError
 #         pass
 
 
-
 class PropertyOffer(models.Model):
     _name = 'estate.property.offer'
     _description = 'Oferta inmobiliaria'
- 
+
+    
+
     @api.depends('property_id','partner_id')
     def _compute_name(self):
         for rec in self:
@@ -39,7 +44,9 @@ class PropertyOffer(models.Model):
 
     partner_id = fields.Many2one('res.partner', string="Cliente")
     property_id = fields.Many2one('estate.property', string="Propiedad")
-    validity = fields.Integer(string="Validez")
+
+    validity = fields.Integer(string="Validez", default="")
+
     # deadline = fields.Integer(string="Deadline",compute="_compute_total_area",inverse="_inverse_deadline")
     deadline = fields.Integer(string="Deadline",compute="_compute_total_area")
 
@@ -47,13 +54,14 @@ class PropertyOffer(models.Model):
     #     ('check_validity','check(validity > 0)','Deadline cannot be before creation date')
     # ]
     
-    # @api.model
-    # def _set_create_date(self):
-    #     return fields.Date.today
+    @api.model
+    def _set_create_date(self):
+        return fields.Date.to_string(date.today())
     
-
     # creation_date = fields.Date(string="Fecha de creación", default="_set_create_date")
     creation_date = fields.Date(string="Fecha de creación")
+
+
 
     # @api.depends_context('uid')
     @api.depends('validity','creation_date')
@@ -79,13 +87,57 @@ class PropertyOffer(models.Model):
     #     self.search(['estatus','=','refused']).unlink()
 
 
-    @api.model_create_multi
-    def create(self,vals):
-        for rec in vals:
-            if not rec.get('creation_date'):
-                rec['creation_date'] = fields.Date.today()
-        
-        return super(PropertyOffer, self).create(vals)
+    # @api.model_create_multi
+    # def create(self,vals):
+    #     for rec in vals:
+    #         if not rec.get('creation_date'):
+    #             rec['creation_date'] = fields.Date.today()
+    #
+    #     return super(PropertyOffer, self).create(vals)
+    
+    
+    def action_accept_offer(self):
+        if self.property_id:
+            self._validate_accepted_offer()
+            self.property_id.write({
+                'selling_price':self.price
+            })
+            self.property_id.selling_price = self.price
+
+        self.status = 'accepted'
+
+    def _validate_accepted_offer(self):
+        offer_ids = self.env['estate.property.offer'].search([
+            ('property_id','=',self.property_id.id),
+            ('status','=','accepted')
+        ])
+
+        if offer_ids:
+            raise ValidationError("Tienes que aceptar previamente")
+
+
+    def action_decline_offer(self):
+        self.status = 'refused'
+        if all(self.property_id.offer_ids.mapped('status')):
+            self.property_id.write({
+                'selling_price':0,
+                'state':'cancel'
+            })
+            
+    
+    def extend_offer_deadline(self):
+        activ_ids = self._context.get('active_ids',[])
+        if active_ids:
+            offer_ids = self.env['estate.property.offer'].browse(activ_ids)
+            for offer in offer_ids:
+                offer.validity = 10
+
+
+    def extend_offer_deadline(self):
+        offer_ids = self.env['estate.property.offer'].search([])
+        for offer in offer_ids:
+                offer.validity = offer.validity +1
+
 
     # @api.constrains('validity')
     # def _check_validity(self):

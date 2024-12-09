@@ -1,17 +1,39 @@
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+import requests # Importar requests
+from odoo.exceptions import UserError
+import base64
+
+class CharacterWizard(models.TransientModel):
+    _name = 'character.wizard'
+    _description = 'Character Wizard'
+
+    character_name = fields.Char(string="Nombre", readonly=True)
+    character_status = fields.Char(string="Estado", readonly=True)
+    character_species = fields.Char(string="Especie(s)", readonly=True)
+    character_gender = fields.Char(string="Género", readonly=True)
+    # character_image = fields.Char(string="Image URL", readonly=True)
+    character_image = fields.Binary(string="Imagen", readonly=True)
+
+    def fetch_image(self, url):
+        response = requests.get(url)
+        if response.status_code == 200:
+            return base64.b64encode(response.content)
+        return False
 
 
 class Property(models.Model):
     _name = 'estate.property'
-    _description = 'Estate properties'
+    _description = 'Propiedades inmobiliarias'
 
     name = fields.Char(string="Nombre", required=True)
+    color = fields.Integer(string="Color")
     
     state = fields.Selection([
         ('new',"Nuevo"),
         ('received',"Oferta recibida"),
         ('accepted',"Aceptado"),
-        ("sold","Rechazado"),
+        ("sold","Vendido"),
+
         ("cancel","Cancelado")
     ],default="new",string="Estatus")
 
@@ -21,8 +43,9 @@ class Property(models.Model):
     postcode = fields.Char(string="Codigo postal")
     date_availability = fields.Date(string="Fecha disponible")
     expected_price = fields.Float(string="Precio esperado")
-    best_offer = fields.Float(string="Mejor oferta")
-    selling_price = fields.Float(string="Precio de venta")
+    best_offer = fields.Float(string="Mejor oferta",compute="_compute_best_price")
+    selling_price = fields.Float(string="Precio de venta",readonly=True)
+
     bedrooms = fields.Integer(string="Camas")
     living_area = fields.Integer(string="Salas de estar")
     facades = fields.Integer(string="Fachadas")
@@ -57,9 +80,18 @@ class Property(models.Model):
 
     # total_area = fields.Integer(string="Area total" compute="_compute_total_area")
     total_area = fields.Integer(string="Area total")
+    api_url = fields.Char(string="API URL") # Nuevo campo para la URL de la API
 
     def action_sold(self):
         self.state = 'sold'
+
+    def action_accept_offer(self):
+        self.state = 'accepted'
+    
+
+    def action_decline_offer(self):
+        self.state = 'decline'
+
     
     def action_cancel(self):
         self.state = 'cancel'
@@ -81,8 +113,167 @@ class Property(models.Model):
             'res_model':'estate.property.offer'
         }
 
+
+    @api.depends('offer_ids')
+    def _compute_best_price(self):
+        for rec in self:
+            if rec.offer_ids:
+                rec.best_offer = max(rec.offer_ids.mapped('price'))
+            else:
+                rec.best_offer = 0
+
+    def action_client_action(self):
+        return {
+            'type':'ir.actions.client',
+            'tag':'display_notification',
+            'params':{
+                'title': _('Testing Client'),
+                'type':'success',
+                'sticky':False
+            }
+        }
     
     #id, create_date, create_uid, write_date, write_uid
+
+
+    def action_url_action(self):
+        return {
+            'type':'ir.actions.act_url',
+            'url':"https://odoo.com",
+            'target':'new',
+        }
+    
+    def _get_report_base_filename(self):
+        self.ensure_one()
+        return 'Estate Property - %s' % self.name
+
+
+    # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
+    character_status = fields.Char(string="Estado", readonly=True)
+    character_name = fields.Char(string="Nombre del personje", readonly=True)
+    character_species = fields.Char(string="Especie", readonly=True)
+    character_gender = fields.Char(string="Genero", readonly=True)
+    character_image = fields.Char(string="URL de la imagen", readonly=True)
+
+
+
+    @api.model
+    @api.returns('self', lambda value: value.id)
+    def _retry_operation(self, operation, *args, **kwargs):
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                return operation(*args, **kwargs)
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    continue
+                else:
+                    raise UserError(_("Max retries exceeded. Operation failed."))
+
+
+
+    def call_api(self):
+        url = self.api_url  # Usar la URL ingresada por el usuario
+        if not url:
+            raise UserError(_("Please provide a valid API URL."))
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            image_data = base64.b64encode(requests.get(data['image']).content)
+            wizard = self.env['character.wizard'].create({
+                'character_name': data['name'],
+                'character_status': data['status'],
+                'character_species': data['species'],
+                'character_gender': data['gender'],
+                'character_image': image_data,
+            })
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'Character Data',
+                'res_model': 'character.wizard',
+                'view_mode': 'form',
+                'target': 'new',
+                'res_id': wizard.id,
+            }
+        else:
+            return {
+                'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {
+                    'title': 'API Call Failed',
+                    'message': f"Failed to connect to API: {response.status_code}",
+                    'type': 'danger',
+                    'sticky': False,
+                }
+            }
+
+
+
+    # def call_api(self):
+    #     response = requests.get("https://rickandmortyapi.com/api/character/564")
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         image_data = base64.b64encode(requests.get(data['image']).content)
+    #         wizard = self.env['character.wizard'].create({
+    #             'character_name': data['name'],
+    #             'character_status': data['status'],
+    #             'character_species': data['species'],
+    #             'character_gender': data['gender'],
+    #             'character_image': image_data,
+    #         })
+    #         return {
+    #             'type': 'ir.actions.act_window',
+    #             'name': 'Character Data',
+    #             'res_model': 'character.wizard',
+    #             'view_mode': 'form',
+    #             'target': 'new',
+    #             'res_id': wizard.id,
+    #         }
+    #     else:
+    #         return {
+    #             'type': 'ir.actions.client',
+    #             'tag': 'display_notification',
+    #             'params': {
+    #                 'title': 'API Call Failed',
+    #                 'message': f"Failed to connect to API: {response.status_code}",
+    #                 'type': 'danger',
+    #                 'sticky': False,
+    #             }
+    #         }
+
+    # def call_api(self):
+    #     # response = requests.get("https://rickandmortyapi.com/api/character/564")
+    #     response = requests.get("https://rickandmortyapi.com/api/character/72")
+    #     if response.status_code == 200:
+    #         data = response.json()
+    #         wizard = self.env['character.wizard'].create({
+    #             'character_name': data['name'],
+    #             'character_status': data['status'],
+    #             'character_species': data['species'],
+    #             'character_gender': data['gender'],
+    #             'character_image': data['image'],
+    #         })
+    #         return {
+    #             'type': 'ir.actions.act_window',
+    #             'name': 'Character Data',
+    #             'res_model': 'character.wizard',
+    #             'view_mode': 'form',
+    #             'target': 'new',
+    #             'res_id': wizard.id,
+    #         }
+    #     else:
+    #         return {
+    #             'type': 'ir.actions.client',
+    #             'tag': 'display_notification',
+    #             'params': {
+    #                 'title': 'API Call Failed',
+    #                 'message': f"Failed to connect to API: {response.status_code}",
+    #                 'type': 'danger',
+    #                 'sticky': False,
+    #             }
+    #         }
+
+
 
 #Aqui estamos creando un nuevo modelo.
 class PropertyType(models.Model):
@@ -97,3 +288,36 @@ class PropertyTag(models.Model):
 
     name = fields.Char(string="Nombre", required=True)
     color = fields.Char(string="Color")
+
+
+
+
+
+
+
+class APIConnector(models.Model):
+    _name = 'api.connector'
+    _description = 'API Connector'
+
+    name = fields.Char(string="Name")
+    api_url = fields.Char(string="API URL", required=True)
+    character_name = fields.Char(string="Character Name", readonly=True)
+    character_status = fields.Char(string="Status", readonly=True)
+    character_species = fields.Char(string="Species", readonly=True)
+    character_gender = fields.Char(string="Gender", readonly=True)
+    character_image = fields.Char(string="Image URL", readonly=True)
+
+    def call_api(self):
+        for record in self:
+            response = requests.get(record.api_url)
+            if response.status_code == 200:
+                data = response.json()
+                record.character_name = data['name']
+                record.character_status = data['status']
+                record.character_species = data['species']
+                record.character_gender = data['gender']
+                record.character_image = data['image']
+            else:
+                raise Exception(f"Failed to connect to API: {response.status_code}")
+
+
