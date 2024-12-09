@@ -53,7 +53,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <t t-for-each="o.offer_ids" t-as="offer">
+                            <t t-foreach="o.offer_ids" t-as="offer">
                                 <tr>
                                     <td class="text-start">
                                         <span t-field="offer.partner_id"/>
