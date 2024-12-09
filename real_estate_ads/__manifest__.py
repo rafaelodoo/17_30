@@ -27,7 +27,9 @@
         'views/character_wizard_views.xml',
         # 'views/api_connector_views.xml',
         # 'views/character_wizard_views.xml',
-        'data/estate.property.type.csv'
+        'data/estate.property.type.csv',
+        'report/report_template.xml',
+        'report/property_report.xml',
     ],
     'demo': [
         'demo/property_tag.xml'
