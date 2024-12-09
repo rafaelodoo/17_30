@@ -2,7 +2,7 @@
     <data>
 
         <template id="report_estate_property_document">
-            <t-call="web.external_layout">
+            <t t-call="web.external_layout">
                 <div class="mt-5">
                     <div class="page">
                         <h2>Reporte - Propiedades</h2>
