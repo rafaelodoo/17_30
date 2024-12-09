@@ -13,11 +13,10 @@
     'depends': ['base'],
     'data': [
         # groups
-        'security/ir.model.access.csv',
-        'security/res_groups.xml',
-        'security/model_access.xml',
         'security/ir_rule.xml',
         'security/ir.model.access.csv',
+        'security/model_access.xml',
+        'security/res_groups.xml',
         'views/property_view.xml',
         'views/property_type_view.xml',
         'views/property_type_tag.xml',
