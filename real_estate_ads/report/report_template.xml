@@ -53,23 +53,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-start">
-                                    <span t-field="offer.partner_id"/>
-                                </td>
-                                <td class="text-start">
-                                    <span t-field="offer.price"/>
-                                </td>
-                                <td class="text-start">
-                                    <span t-field="offer.validity"/>
-                                </td>
-                                <td class="text-start">
-                                    <span t-field="offer.deadline"/>
-                                </td>
-                                <td class="text-end">
-                                    <span t-field="offer.status"/>
-                                </td>
-                            </tr>
+                            <t t-for-each="o.offer_ids" t-as="offer">
+                                <tr>
+                                    <td class="text-start">
+                                        <span t-field="offer.partner_id"/>
+                                    </td>
+                                    <td class="text-start">
+                                        <span t-field="offer.price"/>
+                                    </td>
+                                    <td class="text-start">
+                                        <span t-field="offer.validity"/>
+                                    </td>
+                                    <td class="text-start">
+                                        <span t-field="offer.deadline"/>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="offer.status"/>
+                                    </td>
+                                </tr>
+                            </t>
                         </tbody>
 
 
