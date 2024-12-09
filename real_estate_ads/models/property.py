@@ -23,6 +23,7 @@ class CharacterWizard(models.TransientModel):
 
 class Property(models.Model):
     _name = 'estate.property'
+    _inherit = ['mail.thread']
     _description = 'Propiedades inmobiliarias'
 
     name = fields.Char(string="Nombre", required=True)
