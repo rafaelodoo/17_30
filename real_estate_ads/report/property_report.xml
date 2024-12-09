@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="property_report_action" model="ir.actions.report">
-            <field name="name">Property Report Action</field>
+            <field name="name">Reporte personalizado de propiedades</field>
             <field name="model">estate.property</field>
             <field name="report_type">qweb-pdf</field>
             <field name="report_name">real_estate_ads.report_estate_property</field>
