@@ -10,7 +10,7 @@
     'website': "http://www.yourcompany.com",
     'category': 'Rafael',
     'version': '1.0',
-    'depends': ['base','mail'],
+    'depends': ['base','mail','website'],
     'data': [
         # groups
         'security/ir_rule.xml',

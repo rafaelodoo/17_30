@@ -23,7 +23,7 @@ class CharacterWizard(models.TransientModel):
 
 class Property(models.Model):
     _name = 'estate.property'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread','mail.activity.mixin','website.published.mixin','website.seo.metadata']
     _description = 'Propiedades inmobiliarias'
 
     name = fields.Char(string="Nombre", required=True)
@@ -147,6 +147,10 @@ class Property(models.Model):
     def _get_report_base_filename(self):
         self.ensure_one()
         return 'Estate Property - %s' % self.name
+
+    # def _compute_website_filename(self):
+    #     for rec in self:
+    #         rec.website_url="/properties/%s" % rec.id
 
 
     # Campos para almacenar los datos del personaje de Rick and Morty temporalmente
