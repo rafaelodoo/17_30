@@ -23,7 +23,6 @@
         'views/property_offer_view.xml',
         'views/menu_items.xml',
         'data/property_type.xml',
-        'data/estate.property.type.csv',
         # Nuevo archivo para el conector de API
         'views/character_wizard_views.xml',
         # 'views/api_connector_views.xml',
